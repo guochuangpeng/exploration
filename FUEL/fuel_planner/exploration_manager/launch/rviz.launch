@@ -1,0 +1,15 @@
+<launch>
+  <param name="pid_gain/quad_mass" value="5.0" type="double"/>
+  <param name="pid_gain/Kp_xy" value="2.0" type="double"/>
+  <param name="pid_gain/Kp_z" value="2.0" type="double"/>
+  <param name="pid_gain/Kv_xy" value="5.0" type="double"/>
+ 
+
+  <node name="rvizvisualisation" pkg="rviz" type="rviz" output="log" args="-d $(find exploration_manager)/config/my_traj.rviz" />
+  <node pkg="tf" type="static_transform_publisher" name="tf_53" args="0 0 0 0 0 0 world navigation 100" />
+   <node pkg="tf2_ros" type="static_transform_publisher" name="tf_wtom" args="0 0 0 0.0 0.0 0.0 1  world map " />
+      
+      <node pkg="cxr_egoctrl_v1" name="cxr_egoctrl_v1" type="cxr_egoctrl_v1" output="screen">
+       <param name="sim_or_real" value="1" type="int"/>
+    </node>
+</launch>
